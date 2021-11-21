@@ -9,13 +9,15 @@ public class Membership implements Entity<MembershipID> {
     private final String firstName;
     private final String lastName;
     private String password;
+    private int age;
 
-    public Membership(MembershipID membershipID, String mail, String firstName, String lastName, String password) {
+    public Membership(MembershipID membershipID, String mail, String firstName, String lastName, String password, int age) {
         this.membershipID = membershipID;
         this.mail = mail;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
+        this.age = age;
     }
 
     @Override

@@ -5,4 +5,5 @@ public class MembershipApplication {
     public String firstName;
     public String lastName;
     public String password;
+    public int age;
 }

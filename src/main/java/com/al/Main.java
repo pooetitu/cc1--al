@@ -1,8 +1,7 @@
 package com.al;
 
 import com.al.domain.models.MembershipApplication;
-import com.al.domain.validators.MembershipInvalidApplicationValidator;
-import com.al.domain.validators.MembershipValidApplicationValidator;
+import com.al.domain.validators.MembershipApplicationValidator;
 import com.al.infrastructure.controllers.MembershipController;
 import com.al.infrastructure.repositories.InMemoryMembershipRepository;
 import com.al.infrastructure.services.MembershipService;
@@ -12,18 +11,20 @@ import com.al.kernel.ConsoleLogger;
 public class Main {
     public static void main(String[] args) {
         var logger = new ConsoleLogger();
-        var membershipValidValidator = new MembershipValidApplicationValidator(logger);
-        var membershipInvalidValidator = new MembershipInvalidApplicationValidator(logger);
+        var membershipValidator = new MembershipApplicationValidator(logger);
 
         var paymentService = new StubPaymentService(logger);
         var membershipRepository = new InMemoryMembershipRepository();
-        var membershipValidService = new MembershipService(membershipRepository, membershipValidValidator, paymentService);
-        var membershipValidController = new MembershipController(membershipValidService);
-        membershipValidController.addMembership(new MembershipApplication());
+        var membershipService = new MembershipService(membershipRepository, membershipValidator, paymentService);
+        var membershipController = new MembershipController(membershipService);
 
-
-        var membershipInvalidService = new MembershipService(membershipRepository, membershipInvalidValidator, paymentService);
-        var membershipInvalidController = new MembershipController(membershipInvalidService);
-        membershipInvalidController.addMembership(new MembershipApplication());
+        var validMembership = new MembershipApplication();
+        validMembership.firstName = "Jack";
+        validMembership.age = 19;
+        membershipController.addMembership(validMembership);
+        var invalidMembership = new MembershipApplication();
+        invalidMembership.firstName = "Paul";
+        invalidMembership.age = 17;
+        membershipController.addMembership(invalidMembership);
     }
 }
