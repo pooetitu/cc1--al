@@ -8,8 +8,8 @@ public class Membership implements Entity<MembershipID> {
     private final String mail;
     private final String firstName;
     private final String lastName;
+    private final int age;
     private String password;
-    private int age;
 
     public Membership(MembershipID membershipID, String mail, String firstName, String lastName, String password, int age) {
         this.membershipID = membershipID;

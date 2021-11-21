@@ -20,7 +20,7 @@ public class MembershipService {
     }
 
     public void addMembership(MembershipApplication membershipApplication) {
-        if(membershipApplicationValidator.validate(membershipApplication) && paymentService.processPayment()) {
+        if (membershipApplicationValidator.validate(membershipApplication) && paymentService.processPayment()) {
             final MembershipID membershipId = membershipRepository.nextId();
             membershipRepository.add(new Membership(membershipId, membershipApplication.mail,
                     membershipApplication.firstName, membershipApplication.lastName, membershipApplication.password, membershipApplication.age));

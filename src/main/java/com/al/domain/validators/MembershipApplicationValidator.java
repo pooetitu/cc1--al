@@ -12,11 +12,10 @@ public class MembershipApplicationValidator implements Predicate<MembershipAppli
 
     @Override
     public boolean validate(MembershipApplication membership) {
-        if (membership.age >= 18){
+        if (membership.age >= 18) {
             logger.info("Validated membership application for " + membership.firstName);
             return true;
-        }
-        else {
+        } else {
             logger.info("Invalid membership application for " + membership.firstName);
             return false;
         }
