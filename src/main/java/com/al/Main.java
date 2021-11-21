@@ -12,7 +12,6 @@ public class Main {
     public static void main(String[] args) {
         var logger = new ConsoleLogger();
         var membershipValidator = new MembershipApplicationValidator(logger);
-
         var paymentService = new StubPaymentService(logger);
         var membershipRepository = new InMemoryMembershipRepository();
         var membershipService = new MembershipService(membershipRepository, membershipValidator, paymentService);
@@ -22,6 +21,7 @@ public class Main {
         validMembership.firstName = "Jack";
         validMembership.age = 19;
         membershipController.addMembership(validMembership);
+
         var invalidMembership = new MembershipApplication();
         invalidMembership.firstName = "Paul";
         invalidMembership.age = 17;
