@@ -3,7 +3,7 @@ package com.al.domain.validators;
 import com.al.domain.models.MembershipApplication;
 import com.al.kernel.Logger;
 
-public class MembershipInvalidApplicationValidator implements MembershipApplicationValidator {
+public class MembershipInvalidApplicationValidator implements Predicate<MembershipApplication> {
     private final Logger logger;
 
     public MembershipInvalidApplicationValidator(Logger logger) {
@@ -11,7 +11,7 @@ public class MembershipInvalidApplicationValidator implements MembershipApplicat
     }
 
     @Override
-    public boolean validateMembership(MembershipApplication membership) {
+    public boolean validate(MembershipApplication membership) {
         logger.error("Invalid membership application for " + membership.firstName);
         return false;
     }
